@@ -1,6 +1,9 @@
 <template>
   <section id="principal">
-    <h1 id="titulo">MobileHub</h1>
+    <div id="header">
+        <button><router-link to="/"><h1 id="titulo">MobileHub</h1></router-link></button>
+        <button @click="carrito()"><i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
     <div id="moviles">
         <div id="fila1" class="fila">
             <div v-bind:id="`movil${movil.id}`" class="movil" v-for="(movil) in moviles.slice(0,3)" :key="movil.id">
@@ -52,6 +55,12 @@ export default {
         return{
             moviles:mobileList
         }
+    },
+    methods:{
+        carrito(){
+            let username=this.$route.params.username
+            this.$router.push({name:'cart',params:{'username':username}})
+        }
     }
 }
 </script>
@@ -65,8 +74,22 @@ export default {
         flex-direction: column
         padding: 50px
         gap: 30px
-        #titulo
-            font-size: 40px
+        #header
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: 15px
+            button
+                border: none
+                background: none
+                cursor: pointer
+                i
+                    font-size: 35px
+                a
+                    text-decoration: none
+                    color: black
+            #titulo
+                font-size: 40px
         #moviles
             display: flex
             justify-content: center

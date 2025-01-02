@@ -2,7 +2,7 @@
     <section id="principal">
         <div id="header">
             <h1 id="titulo">MobileHub</h1>
-            <button><router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link></button>
+            <button><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
         <div id="formu">
             <h1>Register</h1>

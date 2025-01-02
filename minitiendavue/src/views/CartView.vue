@@ -2,24 +2,6 @@
     <section id="principal">
         <div id="header">
             <button><router-link to="/"><h1 id="titulo">MobileHub</h1></router-link></button>
-            <button><router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link></button>
-        </div>
-        <div id="formu">
-            <h1>Register</h1>
-            <div class="input">
-                <label>Nombre</label>
-                <input type="text" placeholder="Introduce tu nombre">
-            </div>
-            <div class="input">
-                <label>Usuario</label>
-                <input type="text" placeholder="Introduce tu usuario">
-            </div>
-            <div class="input">
-                <label>Contraseña</label>
-                <input type="password" placeholder="Introduce tu contraseña">
-            </div>
-            <button>Crear cuenta</button>
-            <p>¿Ya tienes cuenta? <router-link to="/">Iniciar sesión</router-link></p>
         </div>
     </section>
 </template>

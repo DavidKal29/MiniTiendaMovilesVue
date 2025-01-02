@@ -1,7 +1,7 @@
 export let users=[
-    {name:'admin',user:'admin',password:'admin'},
-    {name:'user',user:'user',password:'user'},
-    {name:'guest',user:'guest',password:'guest'}
+    {name:'admin',username:'admin',password:'admin'},
+    {name:'user',username:'user',password:'user'},
+    {name:'guest',username:'guest',password:'guest'}
 ]
 
 export const mobileList = [

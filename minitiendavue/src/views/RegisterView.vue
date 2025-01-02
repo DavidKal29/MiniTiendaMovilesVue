@@ -1,29 +1,73 @@
 <template>
     <section id="principal">
-        <h1 id="titulo">MobileHub</h1>
+        <div id="header">
+            <h1 id="titulo">MobileHub</h1>
+            <button><router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link></button>
+        </div>
         <div id="formu">
             <h1>Register</h1>
             <div class="input">
                 <label>Nombre</label>
-                <input type="text" placeholder="Introduce tu nombre">
+                <input type="text" placeholder="Introduce tu nombre" v-model="name">
             </div>
             <div class="input">
                 <label>Usuario</label>
-                <input type="text" placeholder="Introduce tu usuario">
+                <input type="text" placeholder="Introduce tu usuario" v-model="username">
             </div>
             <div class="input">
                 <label>Contraseña</label>
-                <input type="password" placeholder="Introduce tu contraseña">
+                <input type="password" placeholder="Introduce tu contraseña" v-model="password">
             </div>
-            <button>Crear cuenta</button>
+            <button @click="crear()">Crear cuenta</button>
             <p>¿Ya tienes cuenta? <router-link to="/">Iniciar sesión</router-link></p>
         </div>
     </section>
 </template>
 
 <script>
+import { users } from '../db/db.js'
 export default {
-    name:'RegisterView'
+    name:'RegisterView',
+    data(){
+        return{
+            name:'',
+            username:'',
+            password:'',
+            usuarios:[]
+        }
+    },
+    methods:{
+        getLocalStorage(){
+            this.usuarios=JSON.parse(localStorage.getItem('users'))
+            if (this.usuarios==null) {
+                this.usuarios=users
+                localStorage.setItem('users',JSON.stringify(this.usuarios))
+            }
+        },
+        crear(){
+            if (this.name=='' || this.username=='' || this.password=='') {
+                alert('Rellena todos los campos')
+            }else{
+                let user={
+                    name:this.name,
+                    username:this.username,
+                    password:this.password
+                }
+
+                this.usuarios.push(user)
+                localStorage.setItem('users',JSON.stringify(this.usuarios))
+                console.log(this.usuarios);  
+
+                this.name=''
+                this.username=''
+                this.password=''
+            }
+        }
+    },
+    mounted(){
+        this.getLocalStorage()
+    }
+    
 }
 </script>
 
@@ -34,19 +78,30 @@ export default {
         align-items: center
         flex-direction: column
         height: 100vh
-        background-color: #007BFF
+        background-color: #AED6F1
         gap: 30px
-        #titulo
-            font-weight: bold
-            font-size: 40px
-            color: white
-        
+        #header
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: 15px
+            button
+                border: none
+                background: none
+                cursor: pointer
+                i
+                    font-size: 35px
+                a
+                    text-decoration: none
+                    color: black
+            #titulo
+                font-weight: bold
+                font-size: 40px
         #formu
             display: flex
             justify-content: space-evenly
             align-items: center
             flex-direction: column
-            border: 1px solid
             border-radius: 5px
             width: 50vh
             height: 60vh

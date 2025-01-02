@@ -1,62 +1,32 @@
 <template>
     <section id="principal">
         <div id="header">
-            <h1 id="titulo">MobileHub</h1>
+            <button><router-link to="/"><h1 id="titulo">MobileHub</h1></router-link></button>
             <button><router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link></button>
         </div>
-        
         <div id="formu">
-            <h1>Login</h1>
+            <h1>Register</h1>
+            <div class="input">
+                <label>Nombre</label>
+                <input type="text" placeholder="Introduce tu nombre">
+            </div>
             <div class="input">
                 <label>Usuario</label>
-                <input type="text" placeholder="Introduce tu usuario" v-model="username">
+                <input type="text" placeholder="Introduce tu usuario">
             </div>
             <div class="input">
                 <label>Contraseña</label>
-                <input type="password" placeholder="Introduce tu contraseña" v-model="password">
+                <input type="password" placeholder="Introduce tu contraseña">
             </div>
-            <button @click="entrar()">Iniciar sesión</button>
-            <p>¿No tienes cuenta? <router-link to="/register">Registrarme</router-link></p>
+            <button>Crear cuenta</button>
+            <p>¿Ya tienes cuenta? <router-link to="/">Iniciar sesión</router-link></p>
         </div>
     </section>
 </template>
 
 <script>
-import { users } from '../db/db.js'
 export default {
-    name:'LoginView',
-    data(){
-        return {
-            username:'',
-            password:'',
-            usuarios:[]
-        }
-    },
-    methods:{
-        getLocalStorage(){
-            this.usuarios=JSON.parse(localStorage.getItem('users'))
-            if (this.usuarios==null) {
-                this.usuarios=users
-                localStorage.setItem('users',JSON.stringify(this.usuarios))
-            }
-        },
-        entrar(){
-            if (this.name=='' || this.username=='' || this.password=='') {
-                alert('Rellena todos los campos')
-            }else{
-                let usuarioEncontrado=this.usuarios.find(u=>u.username==this.username && u.password==this.password)
-            
-                if (usuarioEncontrado) {
-                    this.$router.push({name:'products',params:{'username':usuarioEncontrado.username}})
-                }else{
-                    alert('Datos incorrectos')
-                }
-            }
-        }
-    },
-    mounted(){
-        this.getLocalStorage()
-    }
+    name:'CartView'
 }
 </script>
 

@@ -18,21 +18,27 @@
 </template>
 
 <script>
+import { users } from '../db/db.js'
 export default {
     name:'LoginView',
     data(){
         return {
             usuario:'',
-            password:''
+            password:'',
+            usuarios:[]
         }
     },
     methods:{
-        entrar(){
-            
+        getLocalStorage(){
+            this.usuarios=JSON.parse(localStorage.getItem('users'))
+            if (this.usuarios==null) {
+                this.usuarios=users
+                localStorage.setItem('users',JSON.stringify(this.usuarios))
+            }
         }
     },
     mounted(){
-
+        this.getLocalStorage()
     }
 }
 </script>

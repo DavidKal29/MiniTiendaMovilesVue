@@ -33,29 +33,29 @@ export default {
         }
     },
     methods:{
-        getLocalStorage(){
+        getLocalStorageUsers(){//Obtener los usuarios del localstorage
             this.usuarios=JSON.parse(localStorage.getItem('users'))
             if (this.usuarios==null) {
-                this.usuarios=users
+                this.usuarios=users//si no existe, le asignamos a un array vacio de db.js
                 localStorage.setItem('users',JSON.stringify(this.usuarios))
             }
         },
-        entrar(){
-            if (this.name=='' || this.username=='' || this.password=='') {
+        entrar(){//funcion para inicar sesion y entrar a la seccion de productos
+            if (this.name=='' || this.username=='' || this.password=='') {//comprueba que el usuario haya rellenado todos los campos
                 alert('Rellena todos los campos')
             }else{
-                let usuarioEncontrado=this.usuarios.find(u=>u.username==this.username && u.password==this.password)
+                let usuarioEncontrado=this.usuarios.find(u=>u.username==this.username && u.password==this.password)//busca al usuario en los users
             
-                if (usuarioEncontrado) {
-                    this.$router.push({name:'products',params:{'username':usuarioEncontrado.username}})
-                }else{
-                    alert('Datos incorrectos')
+                if (usuarioEncontrado) {//si el usuario existe
+                    this.$router.push({name:'products',params:{'username':usuarioEncontrado.username}})//redirige al usuario a la seccion productos
+                }else{//el usuario no existe 
+                    alert('Datos incorrectos')//mensaje de error
                 }
             }
         }
     },
     mounted(){
-        this.getLocalStorage()
+        this.getLocalStorageUsers()//actualiza el localstorage de los usuarios
     }
 }
 </script>

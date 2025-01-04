@@ -37,35 +37,38 @@ export default {
         }
     },
     methods:{
-        getLocalStorage(){
+        getLocalStorageUsers(){//Obtener los usuarios del localstorage
             this.usuarios=JSON.parse(localStorage.getItem('users'))
             if (this.usuarios==null) {
-                this.usuarios=users
+                this.usuarios=users//si no existe, le asignamos a un array vacio de db.js
                 localStorage.setItem('users',JSON.stringify(this.usuarios))
             }
         },
-        crear(){
-            if (this.name=='' || this.username=='' || this.password=='') {
-                alert('Rellena todos los campos')
+        crear(){//funcion para crear al usuario
+            if (this.name=='' || this.username=='' || this.password=='') {//comprueba que el usuario relleno todos los campos
+                alert('Rellena todos los campos')//mensaje de eror
             }else{
-                let user={
+                let user={//crea el objeto que será metido en el array de users
                     name:this.name,
                     username:this.username,
                     password:this.password
                 }
 
-                this.usuarios.push(user)
-                localStorage.setItem('users',JSON.stringify(this.usuarios))
+                this.usuarios.push(user)//mete el user al array de usuarios
+                localStorage.setItem('users',JSON.stringify(this.usuarios))//actualiza el localstorage de los usuarios
                 console.log(this.usuarios);  
 
+                //borra lo introducido en los inputs
                 this.name=''
                 this.username=''
                 this.password=''
+
+                alert('Cuenta creada con éxito')
             }
         }
     },
     mounted(){
-        this.getLocalStorage()
+        this.getLocalStorageUsers()//actualiza el localstorage de los usuarios
     }
     
 }

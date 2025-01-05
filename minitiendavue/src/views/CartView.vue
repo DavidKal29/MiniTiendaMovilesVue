@@ -1,7 +1,7 @@
 <template>
     <section id="principal">
         <div id="header">
-            <button><router-link to="/"><h1 id="titulo">MobileHub</h1></router-link></button>
+            <button @click="volver()"><h1 id="titulo">MobileHub</h1></button>
         </div>
         <div id="sumarios">
             <div id="sinProductos" v-if="this.productos.length==0">
@@ -169,6 +169,9 @@ export default {
                 alert('No tienes productos')//advertimos que no se puede realizar la compra
             }
             
+        },
+        volver(){//funcion para volver a productos
+            this.$router.push({name:'products',params:{'name':this.$route.params.name}})
         }
     },
     mounted(){//funcion que se ejecutara nada mas entrar en la seccion 

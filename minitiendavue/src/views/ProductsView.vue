@@ -128,10 +128,11 @@ export default {
                         console.log(this.cart);
                     }
                 }
+                alert('Añadido el producto')//le mostramos al user el mensaje de éxito
             }
             
 
-            alert('Añadido el producto')//le mostramos al user el mensaje de éxito
+            
         }
     },
     mounted(){
@@ -149,9 +150,6 @@ export default {
         if (!this.userCarrito) {
             this.userCarrito=''//si el usuario no ha metido nada en el carrito, simplemente hacemos que la variable sea un ''
         }
-
-
-        
     }
 }
 </script>

@@ -42,3 +42,9 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
    ```bash
    npm run serve
    ```
+
+   Con yarn:
+
+   ```bash
+   yarn serve
+   ```
